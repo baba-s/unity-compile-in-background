@@ -33,10 +33,18 @@ namespace KoganeUnityLib
 			// ファイル監視ツールを起動します
 			// ツールからメッセージを受信したらコンパイルを開始します
 			var dataPath	= Application.dataPath;
-			var filename	= dataPath + "/" + CONSOLE_APP_PATH;
-			var path		= Application.dataPath;
+#if UNITY_EDITOR_OSX
+            var filename = "/usr/local/bin/fswatch";
+#else
+			var filename = dataPath + "/" + CONSOLE_APP_PATH;
+#endif
+            var path		= Application.dataPath;
+#if UNITY_EDITOR_OSX
+            var arguments = string.Format(@"-x ""{0}""", path);
+#else
 			var arguments	= string.Format( @"-p ""{0}"" -w 0", path );
-			var windowStyle	= ProcessWindowStyle.Hidden;
+#endif
+            var windowStyle	= ProcessWindowStyle.Hidden;
 
 			var info = new ProcessStartInfo
 			{
@@ -124,11 +132,18 @@ namespace KoganeUnityLib
 			//
 			// この関数では AssetDatabase.Refresh を呼び出しても何も起きないので
 			// フラグだけ立てておいて Refresh は EditorApplication.update で行います
+#if UNITY_EDITOR_OSX
+            if (message.Contains("Created") || message.Contains("Renamed") || message.Contains("Updated") || message.Contains("Removed"))
+            {
+                m_isRefresh = true;
+            }
+#else
 			if ( message.Contains( "OnChanged" ) || message.Contains( "OnRenamed" ) )
 			{
 				m_isRefresh = true;
 			}
-		}
+#endif
+        }
 	}
 }
 

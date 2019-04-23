@@ -18,3 +18,5 @@ You can start compiling without having to return focus to the Unity editor after
 
 For example, if you edit and save the code in Visual Studio,   
 compilation will start without returning to the Unity editor.  
+
+For macOS user, please run "brew install fswatch".
