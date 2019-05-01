@@ -8,6 +8,12 @@ You can start compiling without having to return focus to the Unity editor after
 ![](https://img.shields.io/badge/.NET-3.5%2B-orange.svg)
 [![](https://img.shields.io/github/license/baba-s/unity-compile-in-background.svg)](https://github.com/baba-s/unity-compile-in-background/blob/master/LICENSE)
 
+## News
+
+![](https://cdn-ak.f.st-hatena.com/images/fotolife/b/baba_s/20190501/20190501174544.gif)
+
+You do not need to use this repository as Visual Studio 2019 supports background compilation.
+
 ## Version
 
 - Unity 2018.3.0f2
